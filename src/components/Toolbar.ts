@@ -28,7 +28,7 @@ export class Toolbar {
   private currentViewMode: ViewMode = "list";
   private options: ToolbarOptions;
   private trackCount = 0;
-  private sortIndex = 0;
+  private sortIndex = -1;
 
   constructor(options: ToolbarOptions = {}) {
     this.options = options;
