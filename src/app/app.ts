@@ -7,7 +7,7 @@ import {
   FavouritesView, SettingsView, QueueView, NowPlayingView,
 } from "@/views";
 import { api } from "./api";
-import { Album, Artist, Genre, Track } from "@/types/library";
+import { Album, Artist, Genre, LibraryPage, Track } from "@/types/library";
 import { Playlist } from "@/types/playlists";
 
 export class App {
@@ -169,7 +169,8 @@ export class App {
     const value = <T,>(index: number, fallback: T): T =>
       results[index].status === "fulfilled" ? results[index].value as T : fallback;
 
-    const page = value(0, undefined as never);
+    const pageResult = results[0];
+    const page: LibraryPage | undefined = pageResult.status === "fulfilled" ? pageResult.value as LibraryPage : undefined;
     this.libraryTracks = Array.isArray(page?.tracks) ? page.tracks : [];
     this.albums = Array.isArray(value(1, [] as Album[])) ? value(1, [] as Album[]) : [];
     this.artists = Array.isArray(value(2, [] as Artist[])) ? value(2, [] as Artist[]) : [];
