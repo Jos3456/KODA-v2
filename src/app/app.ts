@@ -221,7 +221,9 @@ export class App {
     try {
       await api.playTrack(track.id);
       this.currentTrack = track;
+      if (this.queueTracks.length === 0) this.queueTracks = [...this.libraryTracks];
       this.queueIndex = this.queueTracks.findIndex((item) => item.id === track.id);
+      this.queueView.setQueueTracks(this.queueTracks, track.id);
       this.player.updateState({ status: "playing", currentTrack: track, currentTimeSeconds: 0, durationSeconds: track.durationSeconds });
       this.nowPlayingView.setTrack(track);
       this.applyToolbarFilters();
