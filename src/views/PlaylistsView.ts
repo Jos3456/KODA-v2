@@ -1,8 +1,10 @@
+import { ViewMode } from "@/components/Toolbar";
 import { Playlist } from "@/types/playlists";
 
 export class PlaylistsView {
   private container: HTMLElement;
   private playlists: Playlist[] = [];
+  private currentViewMode: ViewMode = "grid-large";
 
   constructor() {
     this.container = document.createElement("div");
@@ -12,6 +14,14 @@ export class PlaylistsView {
 
   public getElement(): HTMLElement {
     return this.container;
+  }
+
+  public setViewMode(mode: ViewMode): void {
+    this.currentViewMode = mode;
+    const grid = this.container.querySelector(".card-grid");
+    if (grid) {
+      grid.className = `card-grid ${mode}`;
+    }
   }
 
   public setPlaylists(playlists: Playlist[]): void {
@@ -30,10 +40,13 @@ export class PlaylistsView {
           <span>New Playlist</span>
         </button>
       </div>
-      <div class="card-grid">
+      <div class="card-grid ${this.currentViewMode}">
         ${
           this.playlists.length === 0
-            ? `<div style="grid-column: 1 / -1; text-align: center; padding: 48px; color: var(--color-text-secondary);">No playlists created yet</div>`
+            ? `<div class="empty-state" style="grid-column: 1 / -1;">
+                <p class="empty-state-title">No playlists created yet</p>
+                <p class="empty-state-subtitle">Create a playlist or favourite tracks to organize your music.</p>
+              </div>`
             : this.playlists
                 .map(
                   (pl) => `

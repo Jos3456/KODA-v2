@@ -1,5 +1,6 @@
 import { router, RouteName } from "./router";
 import { Navigation } from "@/components/Navigation";
+import { Toolbar } from "@/components/Toolbar";
 import { Player } from "@/components/Player";
 import {
   SongsView,
@@ -20,6 +21,7 @@ export class App {
   private appContainer: HTMLElement;
   private viewContainer: HTMLElement;
   private navigation: Navigation;
+  private toolbar: Toolbar;
   private player: Player;
 
   private songsView: SongsView;
@@ -57,6 +59,16 @@ export class App {
     this.queueView = new QueueView(handleTrackSelect);
     this.nowPlayingView = new NowPlayingView();
 
+    this.toolbar = new Toolbar({
+      onViewModeChange: (mode) => {
+        this.songsView.setViewMode(mode);
+        this.albumsView.setViewMode(mode);
+        this.artistsView.setViewMode(mode);
+        this.playlistsView.setViewMode(mode);
+        this.favouritesView.setViewMode(mode);
+      },
+    });
+
     this.settingsView = new SettingsView({
       onSelectFolder: async () => {
         const folder = await api.selectMusicFolder();
@@ -82,10 +94,7 @@ export class App {
     this.appContainer.className = "app-container";
 
     this.viewContainer = document.createElement("main");
-    this.viewContainer.style.flex = "1";
-    this.viewContainer.style.display = "flex";
-    this.viewContainer.style.flexDirection = "column";
-    this.viewContainer.style.minWidth = "0";
+    this.viewContainer.className = "app-content";
 
     this.initLayout();
     this.initRouting();
@@ -93,9 +102,10 @@ export class App {
   }
 
   private initLayout(): void {
-    this.appContainer.appendChild(this.navigation.getElement());
-    this.appContainer.appendChild(this.viewContainer);
+    this.root.appendChild(this.navigation.getElement());
+    this.root.appendChild(this.toolbar.getElement());
 
+    this.appContainer.appendChild(this.viewContainer);
     this.root.appendChild(this.appContainer);
     this.root.appendChild(this.player.getElement());
 
@@ -155,6 +165,9 @@ export class App {
       const libraryPage = await api.getLibraryPage(0, 100);
       if (libraryPage && libraryPage.tracks) {
         this.songsView.setTracks(libraryPage.tracks);
+        if (typeof libraryPage.totalCount === "number") {
+          this.toolbar.setTrackCount(libraryPage.totalCount);
+        }
       }
     } catch (err) {
       console.warn("Could not load initial settings/library:", err);

@@ -94,6 +94,6 @@
   --transition-normal: 250ms ease;
 
   /* Layout dimensions */
-  --sidebar-width: 220px;
-  --player-bar-height: 80px;
+  --player-bar-height: 64px;
+  --topbar-height: 52px;
 }

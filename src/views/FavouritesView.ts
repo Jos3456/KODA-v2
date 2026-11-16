@@ -1,4 +1,5 @@
 import { TrackList } from "@/components/TrackList";
+import { ViewMode } from "@/components/Toolbar";
 import { Track } from "@/types/library";
 
 export class FavouritesView {
@@ -19,6 +20,10 @@ export class FavouritesView {
 
   public getElement(): HTMLElement {
     return this.container;
+  }
+
+  public setViewMode(mode: ViewMode): void {
+    this.trackList.setViewMode(mode);
   }
 
   public setTracks(tracks: Track[], selectedTrackId?: string): void {

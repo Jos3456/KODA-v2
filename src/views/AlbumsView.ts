@@ -1,8 +1,10 @@
+import { ViewMode } from "@/components/Toolbar";
 import { Album } from "@/types/library";
 
 export class AlbumsView {
   private container: HTMLElement;
   private albums: Album[] = [];
+  private currentViewMode: ViewMode = "grid-large";
 
   constructor() {
     this.container = document.createElement("div");
@@ -14,6 +16,14 @@ export class AlbumsView {
     return this.container;
   }
 
+  public setViewMode(mode: ViewMode): void {
+    this.currentViewMode = mode;
+    const grid = this.container.querySelector(".card-grid");
+    if (grid) {
+      grid.className = `card-grid ${mode}`;
+    }
+  }
+
   public setAlbums(albums: Album[]): void {
     this.albums = albums;
     this.render();
@@ -21,16 +31,13 @@ export class AlbumsView {
 
   private render(): void {
     this.container.innerHTML = `
-      <div class="content-header">
-        <h1 class="content-title">Albums</h1>
-        <div class="search-bar">
-          <input type="text" class="search-input" placeholder="Search albums..." />
-        </div>
-      </div>
-      <div class="card-grid">
+      <div class="card-grid ${this.currentViewMode}">
         ${
           this.albums.length === 0
-            ? `<div style="grid-column: 1 / -1; text-align: center; padding: 48px; color: var(--color-text-secondary);">No albums discovered yet</div>`
+            ? `<div class="empty-state" style="grid-column: 1 / -1;">
+                <p class="empty-state-title">No albums discovered yet</p>
+                <p class="empty-state-subtitle">Select a music folder in settings to scan your collection.</p>
+              </div>`
             : this.albums
                 .map(
                   (album) => `

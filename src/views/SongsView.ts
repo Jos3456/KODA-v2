@@ -1,4 +1,5 @@
 import { TrackList } from "@/components/TrackList";
+import { ViewMode } from "@/components/Toolbar";
 import { Track } from "@/types/library";
 
 export class SongsView {
@@ -21,18 +22,16 @@ export class SongsView {
     return this.container;
   }
 
+  public setViewMode(mode: ViewMode): void {
+    this.trackList.setViewMode(mode);
+  }
+
   public setTracks(tracks: Track[], selectedTrackId?: string): void {
     this.trackList.updateTracks(tracks, selectedTrackId);
   }
 
   private render(): void {
     this.container.innerHTML = `
-      <div class="content-header">
-        <h1 class="content-title">Songs</h1>
-        <div class="search-bar">
-          <input type="text" class="search-input" placeholder="Search songs..." id="songs-search" />
-        </div>
-      </div>
       <div id="songs-list-container"></div>
     `;
 
