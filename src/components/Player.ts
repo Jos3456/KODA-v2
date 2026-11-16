@@ -11,9 +11,15 @@ export interface PlayerOptions {
 }
 
 const escapeHtml = (value: unknown): string =>
-  String(value ?? "").replace(/[&<>"']/g, (character) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-  })[character] as string);
+  String(value ?? "").replace(/[&<>"']/g, (character) => {
+    switch (character) {
+      case "&": return "&amp;";
+      case "<": return "&lt;";
+      case ">": return "&gt;";
+      case '"': return "&quot;";
+      default: return "&#39;";
+    }
+  });
 
 export class Player {
   private container: HTMLElement;
