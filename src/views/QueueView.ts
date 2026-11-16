@@ -1,5 +1,6 @@
 import { TrackList } from "@/components/TrackList";
 import { Track } from "@/types/library";
+import { ViewMode } from "@/components/Toolbar";
 
 export class QueueView {
   private container: HTMLElement;
@@ -19,6 +20,10 @@ export class QueueView {
 
   public getElement(): HTMLElement {
     return this.container;
+  }
+
+  public setViewMode(mode: ViewMode): void {
+    this.trackList.setViewMode(mode);
   }
 
   public setQueueTracks(tracks: Track[], currentTrackId?: string): void {
