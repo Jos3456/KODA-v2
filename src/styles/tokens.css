@@ -1,0 +1,99 @@
+/* Koda Semantic Tokens — derived from Koda design instructions/colour_palette.md */
+
+:root {
+  /* 1. Core brand colours */
+  --color-brand-brown-900: #512f28;
+  --color-brand-brown-700: #754034;
+  --color-brand-terracotta-600: #a65343;
+  --color-brand-coral-500: #e87561;
+  --color-brand-peach-300: #f4b18f;
+  --color-brand-peach-200: #ffd4b4;
+
+  /* 2. Backgrounds and surfaces */
+  --color-bg-app: #f5f3f0;
+  --color-bg-gradient-start: #512f28;
+  --color-bg-gradient-middle: #b96855;
+  --color-bg-gradient-end: #ffd4b4;
+  --color-surface-cream: #f0eed0;
+  --color-surface-card: #f4f1ec;
+  --color-surface-card-hover: #fbe4d2;
+  --color-surface-selected: #ffdcc1;
+  --color-surface-artwork-placeholder: #d9d9d9;
+  --color-surface-sage: #bec9b5;
+
+  /* Main application gradient */
+  --gradient-main-app: linear-gradient(
+    180deg,
+    #512f28 0%,
+    #754034 28%,
+    #b96855 58%,
+    #f4b18f 82%,
+    #ffd4b4 100%
+  );
+
+  /* 3. Text and icons */
+  --color-text-primary: #292522;
+  --color-text-secondary: #77716c;
+  --color-text-on-dark: #ffffff;
+  --color-text-on-accent: #ffffff;
+  --color-text-muted-on-gradient: #f5e7df;
+  --color-icon-muted: #85817d;
+  --color-icon-primary: #292522;
+
+  /* 4. Interactive states */
+  --color-accent-primary: #e87561;
+  --color-accent-hover: #d96754;
+  --color-accent-pressed: #c95746;
+  --color-accent-soft: #ffe4d2;
+  --color-accent-contrast: #ffffff;
+  --color-focus-ring: #238be6;
+  --color-progress-track: #d6c5b9;
+  --color-progress-fill: #e87561;
+
+  /* 5. Playback component colours */
+  --color-player-bg: #e87561;
+  --color-player-text: #ffffff;
+  --color-player-progress-track: #f6c5b6;
+  --color-player-progress-fill: #71392f;
+  --color-player-control: #ffffff;
+  --color-player-artwork-placeholder: #d9d9d9;
+
+  /* Spacing Scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Typography */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+
+  /* Layout dimensions */
+  --sidebar-width: 220px;
+  --player-bar-height: 80px;
+}

@@ -1,0 +1,44 @@
+/* Koda Theme Definitions */
+
+/* Default Light Theme (Koda Warm Light Palette) */
+:root,
+[data-theme="light"] {
+  --theme-bg-main: var(--gradient-main-app);
+  --theme-bg-sidebar: rgba(255, 255, 255, 0.4);
+  --theme-bg-header: rgba(81, 47, 40, 0.35);
+  --theme-card-bg: var(--color-surface-card);
+  --theme-card-hover: var(--color-surface-card-hover);
+  --theme-text-primary: var(--color-text-primary);
+  --theme-text-secondary: var(--color-text-secondary);
+  --theme-text-header: var(--color-text-on-dark);
+  --theme-border: rgba(81, 47, 40, 0.12);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --theme-bg-main: linear-gradient(
+    180deg,
+    #1d1413 0%,
+    #2c1c19 28%,
+    #3d2521 58%,
+    #251816 82%,
+    #17100f 100%
+  );
+  --theme-bg-sidebar: rgba(20, 15, 14, 0.65);
+  --theme-bg-header: rgba(15, 10, 9, 0.5);
+  --theme-card-bg: #2b2220;
+  --theme-card-hover: #3d302d;
+  --theme-text-primary: #f5f3f0;
+  --theme-text-secondary: #aba49f;
+  --theme-text-header: #ffffff;
+  --theme-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Dynamic theme placeholder (values can be updated via inline styles on :root) */
+[data-theme="dynamic"] {
+  --theme-bg-main: var(--dynamic-gradient, var(--gradient-main-app));
+  --theme-bg-sidebar: var(--dynamic-sidebar-bg, rgba(255, 255, 255, 0.35));
+  --theme-bg-header: var(--dynamic-header-bg, rgba(0, 0, 0, 0.2));
+  --theme-card-bg: var(--dynamic-card-bg, var(--color-surface-card));
+  --theme-card-hover: var(--dynamic-card-hover, var(--color-surface-card-hover));
+}

@@ -1,0 +1,32 @@
+[package]
+name = "koda"
+version = "0.1.0"
+description = "A modern, minimal, offline-first desktop music player"
+authors = ["Jos3456"]
+edition = "2021"
+default-run = "koda"
+
+[lib]
+name = "koda_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-shell = "2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rusqlite = { version = "0.32", features = ["bundled"] }
+walkdir = "2.5"
+lofty = "0.21"
+rodio = "0.20"
+symphonia = { version = "0.5", features = ["all"] }
+notify = "7.0"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+thiserror = "2.0"
+uuid = { version = "1.10", features = ["v4", "serde"] }
+dirs = "6.0"
+chrono = { version = "0.4", features = ["serde"] }
