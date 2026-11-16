@@ -78,6 +78,8 @@ export class App {
         this.artistsView.setViewMode(mode);
         this.playlistsView.setViewMode(mode);
         this.favouritesView.setViewMode(mode);
+        this.genresView.setViewMode(mode);
+        this.queueView.setViewMode(mode);
       },
     });
 
