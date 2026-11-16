@@ -3,6 +3,7 @@ import { Genre } from "@/types/library";
 export class GenresView {
   private container: HTMLElement;
   private genres: Genre[] = [];
+  private currentViewMode: "grid-large" | "grid-small" | "list" = "grid-large";
 
   constructor() {
     this.container = document.createElement("div");
@@ -12,6 +13,12 @@ export class GenresView {
 
   public getElement(): HTMLElement {
     return this.container;
+  }
+
+  public setViewMode(mode: "grid-large" | "grid-small" | "list"): void {
+    this.currentViewMode = mode;
+    const grid = this.container.querySelector(".card-grid");
+    if (grid) grid.className = `card-grid ${mode}`;
   }
 
   public setGenres(genres: Genre[]): void {
@@ -24,7 +31,7 @@ export class GenresView {
       <div class="content-header">
         <h1 class="content-title">Genres</h1>
       </div>
-      <div class="card-grid">
+      <div class="card-grid ${this.currentViewMode}">
         ${
           this.genres.length === 0
             ? `<div style="grid-column: 1 / -1; text-align: center; padding: 48px; color: var(--color-text-secondary);">No genres found</div>`
